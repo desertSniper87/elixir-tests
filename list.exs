@@ -14,3 +14,6 @@ v = Keyword.values(list3)
 foods = [meat: "sausage", veg: "beans"]
 Enum.map(Keyword.values(foods), &("fried " <> &1))
 cook = fn heat, foods -> Keyword.values(foods) |> Enum.map(&(heat <> &1)) end
+
+if false, do: :this, else: :that
+if(false, do: :this, else: :that)
