@@ -1,18 +1,30 @@
 defmodule Caesar do
-  @moduledoc """
-  Documentation for `Caesar`.
-  """
+  def main(argv) do
+    argv
+    |> parse_args
+    |> process
 
-  @doc """
-  Hello world.
+    System.halt(0)
+  end
 
-  ## Examples
+  def parse_args(argv) do
+    parse = OptionParser.parse(argv, switches: [help: :boolean])
 
-      iex> Caesar.hello()
-      :world
+    case parse do
+      {[help: true], _____________, _} -> {:help}
+      {[shift: shift], ["encrypt", msg], _} -> {:encrypt, msg, shift |> String.to_integer()}
+      ________________________________ -> {:help}
+    end
+  end
 
-  """
-  def hello do
-    :world
+  def process({:encrypt, msg, shift}) do
+    Caesar.Cipher.encrypt(msg, shift)
+    |> IO.puts()
+  end
+
+  def process({:help}) do
+    IO.puts("""
+      usage: ./caesar <command> <message> --shift <shift_number>
+    """)
   end
 end

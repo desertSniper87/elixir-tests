@@ -1,6 +1,6 @@
-hello = fn (p) -> "hello #{p}" end
+hello = fn p -> "hello #{p}" end
 
 hello.("Elixir")
 
-hello = fn  -> "hello" end
+hello = fn -> "hello" end
 hello.()
